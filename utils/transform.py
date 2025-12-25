@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def transform_data(df):
-    print("\nStarting the transformation process...")
+    print("Starting the transformation process...")
 
     try:
         if df.empty:

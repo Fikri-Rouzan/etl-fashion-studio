@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 
 
 def load_data_csv(df, output_filename="products.csv"):
-    print("\nStarting the loading process to CSV...")
+    print("Starting the loading process to CSV...")
 
     try:
         if df.empty:
@@ -25,7 +25,7 @@ def load_data_csv(df, output_filename="products.csv"):
 
 
 def load_data_sheets(df, json_cred_path, spreadsheet_id):
-    print("\nStarting the loading process to Google Sheets...")
+    print("Starting the loading process to Google Sheets...")
 
     try:
         if df.empty:
@@ -56,7 +56,7 @@ def load_data_sheets(df, json_cred_path, spreadsheet_id):
 
 
 def load_data_postgres(df, db_config):
-    print("\nStarting the loading process to PostgreSQL...")
+    print("Starting the loading process to PostgreSQL...")
 
     try:
         if df.empty:

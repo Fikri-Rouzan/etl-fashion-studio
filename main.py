@@ -20,13 +20,13 @@ if __name__ == "__main__":
     }
 
     if not SHEET_ID:
-        print("WARNING: SHEET_ID is not filled in .env file\n")
+        print("WARNING: SHEET_ID is not filled in .env file")
 
     required_values = [value for key, value in DB_CONFIG.items() if key != "password"]
 
     if not all(required_values):
         print(
-            "WARNING: Database configuration (host/port/database/username) is not completely filled in .env file\n"
+            "WARNING: Database configuration (host/port/database/username) is not completely filled in .env file"
         )
 
     df_raw = extract_data(BASE_URL, total_pages=50)
@@ -36,4 +36,4 @@ if __name__ == "__main__":
 
         load_main(df_clean, spreadsheet_id=SHEET_ID, db_config=DB_CONFIG)
     else:
-        print("Data is empty, pipeline is stopped.\n")
+        print("Data is empty, pipeline is stopped.")
