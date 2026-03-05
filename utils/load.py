@@ -1,35 +1,37 @@
 import os
 import gspread
+import logging
 import pandas as pd
 from google.oauth2.service_account import Credentials
 from sqlalchemy import create_engine
 
+logger = logging.getLogger(__name__)
+
 
 def load_data_csv(df, output_filename="products.csv"):
-    print("Starting the loading process to CSV...")
+    logger.info("Starting the loading process to CSV...")
 
     try:
         if df.empty:
-            print("DataFrame is empty, CSV is skipped.")
+            logger.info("DataFrame is empty, CSV is skipped.")
             return
 
         df.to_csv(output_filename, index=False)
-
-        print(f"Success: Data saved to {output_filename}")
+        logger.info(f"Success: Data saved to {output_filename}")
     except PermissionError:
-        print(
-            f"ERROR: the '{output_filename}' file is currently open. Please close it and try again."
+        logger.error(
+            f"The '{output_filename}' file is currently open. Please close it and try again."
         )
     except Exception as e:
-        print(f"ERROR While Loading CSV: {e}")
+        logger.error(f"While Loading CSV: {e}")
 
 
 def load_data_sheets(df, json_cred_path, spreadsheet_id):
-    print("Starting the loading process to Google Sheets...")
+    logger.info("Starting the loading process to Google Sheets...")
 
     try:
         if df.empty:
-            print("DataFrame is empty, Google Sheets is skipped.")
+            logger.info("DataFrame is empty, Google Sheets is skipped.")
             return
 
         scopes = [
@@ -38,7 +40,7 @@ def load_data_sheets(df, json_cred_path, spreadsheet_id):
         ]
 
         if not os.path.exists(json_cred_path):
-            print(f"ERROR: The '{json_cred_path}' file was not found.")
+            logger.error(f"The '{json_cred_path}' file was not found.")
             return
 
         creds = Credentials.from_service_account_file(json_cred_path, scopes=scopes)
@@ -50,17 +52,17 @@ def load_data_sheets(df, json_cred_path, spreadsheet_id):
         data_to_upload = [df_str.columns.tolist()] + df_str.values.tolist()
         sheet.update(range_name="A1", values=data_to_upload)
 
-        print("Success: Data was successfully uploaded to Google Sheets")
+        logger.info("Success: Data was successfully uploaded to Google Sheets")
     except Exception as e:
-        print(f"ERROR While Loading Google Sheets: {e}")
+        logger.error(f"While Loading Google Sheets: {e}")
 
 
 def load_data_postgres(df, db_config):
-    print("Starting the loading process to PostgreSQL...")
+    logger.info("Starting the loading process to PostgreSQL...")
 
     try:
         if df.empty:
-            print("DataFrame is empty, PostgreSQL is skipped.")
+            logger.info("DataFrame is empty, PostgreSQL is skipped.")
             return
 
         db_url = f"postgresql://{db_config['username']}:{db_config['password']}@{db_config['host']}:{db_config['port']}/{db_config['database']}"
@@ -70,11 +72,13 @@ def load_data_postgres(df, db_config):
         with engine.connect() as connection:
             df.to_sql(name="products", con=connection, if_exists="replace", index=False)
 
-        print("Success: Data successfully saved to 'products' table in PostgreSQL")
+        logger.info(
+            "Success: Data successfully saved to 'products' table in PostgreSQL"
+        )
 
     except Exception as e:
-        print(f"ERROR While Loading PostgreSQL: {e}")
-        print(
+        logger.error(f"While Loading PostgreSQL: {e}")
+        logger.info(
             "Tip: Make sure the database has been created and the credentials (username/password) are correct."
         )
 

@@ -1,7 +1,10 @@
 import requests
+import logging
 import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
+
+logger = logging.getLogger(__name__)
 
 
 def extract_data(base_url, total_pages=50):
@@ -12,9 +15,7 @@ def extract_data(base_url, total_pages=50):
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
 
-        print(
-            f"[{execution_time}] Starting the extraction process from {total_pages} pages..."
-        )
+        logger.info(f"Starting the extraction process from {total_pages} pages...")
 
         for page in range(1, total_pages + 1):
             try:
@@ -30,7 +31,7 @@ def extract_data(base_url, total_pages=50):
                     response = requests.get(url_alt, headers=headers, timeout=10)
 
                 if response.status_code != 200:
-                    print(
+                    logger.error(
                         f"Failed to fetch page {page} (Status: {response.status_code})"
                     )
                     continue
@@ -39,7 +40,7 @@ def extract_data(base_url, total_pages=50):
                 products = soup.find_all("div", class_="collection-card")
 
                 if not products:
-                    print(f"Warning: No products found on page {page}")
+                    logger.warning(f"No products found on page {page}")
                     continue
 
                 for product in products:
@@ -84,22 +85,24 @@ def extract_data(base_url, total_pages=50):
                         )
 
                     except Exception as e:
-                        print(
+                        logger.error(
                             f"An error occurred while parsing the product on the page {page}: {e}"
                         )
                         continue
 
                 if page % 10 == 0:
-                    print(
+                    logger.info(
                         f"Page {page} completed. Total data collected so far: {len(all_products)}"
                     )
 
             except Exception as e:
-                print(f"Fatal error on page {page}: {e}")
+                logger.error(f"Fatal error on page {page}: {e}")
                 continue
 
-        print(f"Extraction complete. Total raw data obtained: {len(all_products)}")
+        logger.info(
+            f"Extraction complete. Total raw data obtained: {len(all_products)}"
+        )
         return pd.DataFrame(all_products)
     except Exception as e:
-        print(f"The extraction process failed completely: {e}")
+        logger.error(f"The extraction process failed completely: {e}")
         return pd.DataFrame()

@@ -1,12 +1,15 @@
+import logging
 import pandas as pd
+
+logger = logging.getLogger(__name__)
 
 
 def transform_data(df):
-    print("Starting the transformation process...")
+    logger.info("Starting the transformation process...")
 
     try:
         if df.empty:
-            print("Data is empty, transformation process is skipped.")
+            logger.info("Data is empty, transformation process is skipped.")
             return df
 
         df = df[df["Title"] != "Unknown Product"].copy()
@@ -24,7 +27,6 @@ def transform_data(df):
                 return None
             try:
                 parts = str(value).split()
-
                 for part in parts:
                     try:
                         return float(part)
@@ -73,11 +75,10 @@ def transform_data(df):
         df["Colors"] = df["Colors"].astype("int64")
         df["timestamp"] = pd.to_datetime(df["timestamp"])
 
-        print(
+        logger.info(
             f"Transformation complete. Clean data: {len(df)} (Data reduced by {initial_len - len(df)})"
         )
         return df
-
     except Exception as e:
-        print(f"An error occurred in the transformation process: {e}")
+        logger.error(f"An error occurred in the transformation process: {e}")
         return pd.DataFrame()
