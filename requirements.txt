@@ -1,6 +1,8 @@
 beautifulsoup4==4.15.0
+google-auth==2.54.0
 gspread==6.2.1
 pandas==3.0.3
+psycopg2==2.9.12
 pytest==9.0.2
 pytest-cov==7.0.0
 python-dotenv==1.2.2
