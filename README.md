@@ -53,13 +53,25 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
+- Open the `.env` file and configure the following variables
+
+  ```toml
+   SHEET_ID=
+
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_DATABASE=
+   DB_USERNAME=postgres
+   DB_PASSWORD=
+  ```
+
 6. **Run the Program**
 
 ```bash
 python main.py
 ```
 
-7. **Running Tests**
+## 🧪 Running Tests
 
 ```bash
 # Run basic tests
