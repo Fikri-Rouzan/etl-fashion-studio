@@ -8,13 +8,19 @@ from sqlalchemy import create_engine
 logger = logging.getLogger(__name__)
 
 
-def load_data_csv(df, output_filename="products.csv"):
+def load_data_csv(df, output_filename="data/products.csv"):
     logger.info("Starting the loading process to CSV...")
 
     try:
         if df.empty:
             logger.info("DataFrame is empty, CSV is skipped.")
             return
+
+        dir_name = os.path.dirname(output_filename)
+
+        if dir_name and not os.path.exists(dir_name):
+            os.makedirs(dir_name)
+            logger.info(f"Directory '{dir_name}' created automatically.")
 
         df.to_csv(output_filename, index=False)
         logger.info(f"Success: Data saved to {output_filename}")
