@@ -1,7 +1,6 @@
 beautifulsoup4==4.15.0
 gspread==6.2.1
 pandas==3.0.3
-protobuf==7.35.1
 pytest==9.0.2
 pytest-cov==7.0.0
 python-dotenv==1.2.2
