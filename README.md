@@ -6,11 +6,11 @@
 
 ## 🛠️ Tech Stack
 
-| Category                    | Technologies Used                                                                                          |
-| :-------------------------- | :--------------------------------------------------------------------------------------------------------- |
-| 🌐 **Programming Language** | `Python`                                                                                                   |
-| ⚛️ **Libraries**            | `pandas`, `Requests`, `Beautiful Soup 4`, `gspread`, `SQLAlchemy`, `pytest`, `pytest-cov`, `python-dotenv` |
-| 🗄️ **Database**             | `PostgreSQL`                                                                                               |
+| Category                    | Technologies Used                                                                                                                     |
+| :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| 🌐 **Programming Language** | `Python`                                                                                                                              |
+| ⚛️ **Libraries**            | `pandas`, `Requests`, `Beautiful Soup 4`, `gspread`, `google-auth`, `SQLAlchemy`, `psycopg2`, `pytest`, `pytest-cov`, `python-dotenv` |
+| 🗄️ **Database**             | `PostgreSQL`                                                                                                                          |
 
 ---
 
