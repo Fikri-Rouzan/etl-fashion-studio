@@ -19,6 +19,8 @@
 1. **Prerequisites**
    - Python 3.11 or higher.
    - Git installed on your system.
+   - PostgreSQL installed and running on your system.
+   - A valid `google-sheets-api.json` credentials file from the Google Cloud Console.
 
 2. **Clone the Repository**
 
