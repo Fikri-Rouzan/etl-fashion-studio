@@ -82,7 +82,7 @@ cp .env.example .env
 
 - Open the `.env` file and configure the following variables
 
-  ```toml
+  ```env
   SHEET_ID=
 
   DB_HOST=localhost
