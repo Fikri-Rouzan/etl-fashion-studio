@@ -1,41 +1,46 @@
 # ETL Fashion Studio
 
-## ℹ️ About
+## 📌 Description
 
-## 🛠️ Technologies Used
+---
 
-- 🌐 **Programming Language:** Python.
-- ⚛️ **Libraries:** pandas, Requests, Beautiful Soup 4, lxml, gspread, google-auth, SQLAlchemy, psycopg2, pytest, pytest-cov, and python-dotenv.
-- 🗄️ **Database:** PostgreSQL.
-- 💻 **Software:** Visual Studio Code.
+## 🛠️ Tech Stack
+
+| Category                    | Technologies Used                                                 |
+| :-------------------------- | :---------------------------------------------------------------- |
+| 🌐 **Programming Language** | `Python`                                                          |
+| ⚛️ **Libraries**            | `pandas`, `Requests`, `Beautiful Soup 4`, `gspread`, `SQLAlchemy` |
+| 🗄️ **Database**             | `PostgreSQL`                                                      |
+
+---
 
 ## ⚙️ Setup Instructions
 
+1. **Prerequisites**
+   - Python 3.11 or higher.
+   - Git installed on your system.
+
+2. **Clone the Repository**
+
 ```bash
-# Clone the repository
 git clone https://github.com/Fikri-Rouzan/etl-fashion-studio.git
-
-# Navigate to the project directory
 cd etl-fashion-studio
+```
 
-# Create a virtual environment
+3. **Create a Virtual Environment**
+
+```bash
+# Windows
 python -m venv venv
-
-# Activate the virtual environment
 venv\Scripts\activate
 
-# Install dependencies
+# macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+```
+
+4. **Install Dependencies**
+
+```bash
 pip install -r requirements.txt
-
-# Set up environment variables
-cp .env.example .env
-
-# Run the program
-python main.py
-
-# Run the test program
-python -m pytest tests
-
-# Run the test program with coverage reports
-python -m pytest --cov=utils tests/
 ```
