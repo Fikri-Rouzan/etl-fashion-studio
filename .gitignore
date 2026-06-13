@@ -1,20 +1,21 @@
+.env
+.envrc
+.venv
+env/
 venv/
 ENV/
-env/
+env.bak/
+venv.bak/
 
+.pytest_cache/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[codz]
+*$py.class
 
 instance/
 
 *.log
 
-google-sheets-api.json
-
-.env
-
 .coverage
 
-.pytest_cache/
+google-sheets-api.json
