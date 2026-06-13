@@ -22,14 +22,33 @@
    - PostgreSQL installed and running on your system.
    - A valid `google-sheets-api.json` credentials file from the Google Cloud Console.
 
-2. **Clone the Repository**
+2. **Credentials File Setup**
+   - Open the [Google Cloud Console](https://console.cloud.google.com/).
+   - Create a **New project**.
+   - Go to the menu **APIs & Services > Library**, search for and **Enable** the following two APIs:
+     - Google Sheets API
+     - Google Drive API
+   - Go to the menu **APIs & Services > Credentials**, click **Create credentials > Service account**.
+   - Fill in the service account name, then click **Create and close**.
+   - Click on the newly created service account email (it usually follows the format `...iam.gserviceaccount.com`).
+   - Navigate to the **Keys** tab > **Add key > Create new key**, and select **JSON** as the format.
+   - The file will be downloaded automatically to your computer.
+   - Rename the downloaded file to `google-sheets-api.json`.
+   - Move this file into your project root directory.
+   - Open the `google-sheets-api.json` file using a text editor, and copy the value of `"client_email"`.
+   - Open your browser, create a new Google Sheet.
+   - Click the **Share** button in the top-right corner.
+   - Paste the service account email you copied earlier and assign its permission role as **Editor**.
+   - Copy the Spreadsheet ID from the browser URL. (Example URL format: `docs.google.com/spreadsheets/d/SPREADSHEET_ID/edit`). Save this ID for the configuration step.
+
+3. **Clone the Repository**
 
 ```bash
 git clone https://github.com/Fikri-Rouzan/etl-fashion-studio.git
 cd etl-fashion-studio
 ```
 
-3. **Create a Virtual Environment**
+4. **Create a Virtual Environment**
 
 ```bash
 # Windows
@@ -41,13 +60,13 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-4. **Install Dependencies**
+5. **Install Dependencies**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-5. **Configure Environment Variables**
+6. **Configure Environment Variables**
 
 ```bash
 cp .env.example .env
@@ -56,16 +75,16 @@ cp .env.example .env
 - Open the `.env` file and configure the following variables
 
   ```toml
-   SHEET_ID=
+  SHEET_ID=
 
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_DATABASE=
-   DB_USERNAME=postgres
-   DB_PASSWORD=
+  DB_HOST=localhost
+  DB_PORT=5432
+  DB_DATABASE=
+  DB_USERNAME=postgres
+  DB_PASSWORD=
   ```
 
-6. **Run the Program**
+7. **Run the Program**
 
 ```bash
 python main.py
