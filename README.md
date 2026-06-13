@@ -6,11 +6,11 @@
 
 ## 🛠️ Tech Stack
 
-| Category                    | Technologies Used                                                                                                                     |
-| :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
-| 🌐 **Programming Language** | `Python`                                                                                                                              |
-| ⚛️ **Libraries**            | `pandas`, `Requests`, `Beautiful Soup 4`, `gspread`, `google-auth`, `SQLAlchemy`, `psycopg2`, `pytest`, `pytest-cov`, `python-dotenv` |
-| 🗄️ **Database**             | `PostgreSQL`                                                                                                                          |
+| Category                    | Technologies Used                                                                                                                        |
+| :-------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- |
+| 🌐 **Programming Language** | `Python`                                                                                                                                 |
+| ⚛️ **Libraries**            | `pandas`, `Requests`, `Beautiful Soup 4`, `gspread`, `google-auth`,<br>`SQLAlchemy`, `psycopg2`, `pytest`, `pytest-cov`, `python-dotenv` |
+| 🗄️ **Database**             | `PostgreSQL`                                                                                                                             |
 
 ---
 
@@ -45,4 +45,26 @@ source venv/bin/activate
 
 ```bash
 pip install -r requirements.txt
+```
+
+5. **Configure Environment Variables**
+
+```bash
+cp .env.example .env
+```
+
+6. **Run the Program**
+
+```bash
+python main.py
+```
+
+7. **Running Tests**
+
+```bash
+# Run basic tests
+python -m pytest tests
+
+# Run tests with coverage reports
+python -m pytest --cov=utils tests/
 ```
