@@ -98,6 +98,8 @@ cp .env.example .env
 python main.py
 ```
 
+---
+
 ## 🧪 Running Tests
 
 ```bash
